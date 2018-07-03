@@ -5,6 +5,7 @@
 
 <!-- bootstrap cs CDN-->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <!-- bootstrap js CDN-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
@@ -37,7 +38,6 @@
 	</div>
 @endif
 
-
 <div class="row" style='margin-top: 10px; margin-bottom: 10px;'>
 	<form action="{{ route('tasks.store') }}" method='POST' class="container" style="padding: 0;">
 	{{ csrf_field() }}
@@ -58,6 +58,7 @@
 		@if (count($storedTasks) > 0)
 			<table class="table">
 				<thead>
+					<th>Done</th>
 					<th>Task #</th>
 					<th>Name</th>
 					<th>Edit</th>
@@ -68,9 +69,17 @@
 				<tbody>
 					@foreach ($storedTasks as $storedTask)
 					<tr>
+					<th>
+						@if ($storedTask->done) <i class="fas fa-check" style="color:green;"></i>
+						@else <i class="fas fa-times" style="color:red;"></i>
+						@endif
+					</th>
+
 					<th>{{ $storedTask->id }}</th>
-					<td>{{ $storedTask->name }}</td>
-					<td><a href="{{ route('tasks.edit', ['tasks'=>$storedTask->id]) }}" class='btn btn-block'>Edit</a></td>
+					@if (!$storedTask->done)	<td>{{ $storedTask->name }}</td>
+					@else <td style="text-decoration: line-through;">{{ $storedTask->name }}</td>
+					@endif
+					<td><a href="{{ route('tasks.edit', ['tasks'=>$storedTask->id]) }}" class='btn btn-warning'>Edit</a></td>
 
 					{{-- Butonul Delete --}}
 					<td>

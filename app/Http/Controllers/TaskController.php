@@ -91,7 +91,9 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         $task->name = $request->updatedTaskName;
-
+        if ($request->updatedDone)
+        $task->done = $request->updatedDone;
+        else $task->done=0;
         $task->save();
 
         Session::flash('success', 'Task #' . $id . ' has been succesfully updated.');   

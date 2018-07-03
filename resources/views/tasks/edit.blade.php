@@ -10,7 +10,8 @@
 
 	<title>Todo List App</title>
 </head>
-<body style="margin: 15px 0;">
+<font color=#736505> 
+<body style="margin: 15px 0; background-color:#e1d57d">
 <div class="container">
 <div class="col-md-12">
 <div class="row">
@@ -44,10 +45,20 @@
 			<input type="text" name='updatedTaskName' class='form-control input-lg' value='{{ $taskUnderEdit->name }}'>
 		</div>
 
+		<label>Task terminat
+		<input
+		@if ($taskUnderEdit->done) checked='checked' @endif
+
+		type='checkbox'
+		name='updatedDone'
+		value='1'></label>
+
 		<div class="form-group">
 			<input type="submit" value='Save Changes' class='btn btn-success btn-lg'>
 			<a href="" class='btn btn-danger btn-lg pull-right'>Go Back</a>
 		</div>	
+		
+
 	</form>		
 </div>
 		
