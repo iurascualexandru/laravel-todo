@@ -10,7 +10,8 @@
 
 	<title>Todo List App</title>
 </head>
-<body style="margin: 15px 0;">
+<font color=#736505> 
+<body style="margin: 15px 0; background-color:#e1d57d">
 <div class="container">
 <div class="col-md-12">
 <div class="row">
